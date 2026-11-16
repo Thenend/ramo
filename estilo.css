@@ -185,3 +185,9 @@ figcaption { font-size: 15px; color: var(--suave); margin-top: 10px; text-align:
 .tabla-ancha table { margin: 0; min-width: 640px; font-size: 15px; }
 .tabla-ancha th, .tabla-ancha td { padding: 7px 9px; }
 .tabla-ancha thead th:first-child { font-weight: 400; color: var(--suave); font-size: 13px; }
+
+/* descarga de la plantilla */
+.descarga { display: flex; flex-wrap: wrap; align-items: center; gap: 10px 18px; background: var(--papel); border: 1px solid var(--linea);
+            border-radius: var(--radio); padding: 16px 20px; margin: 22px 0; }
+.descarga a.boton { background: var(--acento); color: #fff8ee; padding: 11px 20px; border-radius: 999px; font-weight: 650; text-decoration: none; }
+.descarga span { color: var(--suave); font-size: 16px; }

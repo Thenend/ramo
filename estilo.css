@@ -200,6 +200,13 @@ figcaption { font-size: 15px; color: var(--suave); margin-top: 10px; text-align:
            width: min(1180px, calc(100vw - 32px)); position: relative; left: 50%; transform: translateX(-50%); }
 @media (min-width: 980px) { .creador { grid-template-columns: minmax(0, 1.55fr) minmax(320px, 1fr); align-items: start; }
                             .creador-vista { position: sticky; top: 76px; } }
+@media (max-width: 979px) {   /* en el móvil el árbol se queda arriba mientras rellenas, para ver cómo cambia; los botones, al final */
+  .creador-vista { display: contents; }
+  .creador .creador-vista canvas { position: sticky; top: 64px; z-index: 3; width: min(100%, calc(36vh * 1.414)); margin: 0 auto;
+                    box-shadow: 0 0 0 8px var(--fondo), 0 12px 18px 2px rgba(60, 40, 20, .28); }
+  .creador-panel { order: 1; }
+  .creador-vista .creador-botones { order: 2; justify-content: center; margin: 0; }
+  .creador-vista .creador-aviso, .creador-vista .nota { order: 3; margin: -12px 0 0; text-align: center; } }
 .creador canvas { width: 100%; aspect-ratio: 1485 / 1050; display: block; border-radius: 10px; background: #fff;
                   box-shadow: 0 14px 34px rgba(60, 40, 20, .2); }
 .creador-botones { display: flex; flex-wrap: wrap; gap: 10px; margin: 14px 0 6px; }

@@ -30,8 +30,8 @@
 <link rel="icon" href="../../img/icono-64.png" sizes="64x64">
 <link rel="apple-touch-icon" href="../../img/icono-192.png">
 <link rel="preload" href="../../fuentes/titulos.woff2" as="font" type="font/woff2" crossorigin>
-<link rel="stylesheet" href="../../estilo.css">
-<script type="application/ld+json">[{"@context": "https://schema.org", "@type": "Article", "headline": "Créez votre arbre généalogique et téléchargez-le gratuitement", "description": "Créez gratuitement votre arbre généalogique en ligne : grands-parents, parents, oncles, cousins, frères et sœurs, avec prénoms et photos. En PDF ou en image.", "inLanguage": "fr", "datePublished": "2026-11-16", "dateModified": "2026-11-16", "image": "https://ramotree.com/img/fr/creador.webp", "author": {"@type": "Organization", "name": "Ramo", "url": "https://ramotree.com/fr/"}, "publisher": {"@type": "Organization", "name": "Ramo", "logo": {"@type": "ImageObject", "url": "https://ramotree.com/img/icono-512.png"}}, "mainEntityOfPage": "https://ramotree.com/fr/creer-arbre-genealogique-en-ligne/"}, {"@context": "https://schema.org", "@type": "BreadcrumbList", "itemListElement": [{"@type": "ListItem", "position": 1, "name": "Ramo", "item": "https://ramotree.com/fr/"}, {"@type": "ListItem", "position": 2, "name": "Créer son arbre généalogique gratuitement", "item": "https://ramotree.com/fr/creer-arbre-genealogique-en-ligne/"}]}]</script>
+<link rel="stylesheet" href="../../estilo.css?v=83f1b3a0">
+<script type="application/ld+json">[{"@context": "https://schema.org", "@type": "Article", "headline": "Créez votre arbre généalogique et téléchargez-le", "description": "Créez gratuitement votre arbre généalogique en ligne : grands-parents, parents, oncles, cousins, frères et sœurs, avec prénoms et photos. En PDF ou en image.", "inLanguage": "fr", "datePublished": "2026-11-16", "dateModified": "2026-11-16", "image": "https://ramotree.com/img/fr/creador.webp", "author": {"@type": "Organization", "name": "Ramo", "url": "https://ramotree.com/fr/"}, "publisher": {"@type": "Organization", "name": "Ramo", "logo": {"@type": "ImageObject", "url": "https://ramotree.com/img/icono-512.png"}}, "mainEntityOfPage": "https://ramotree.com/fr/creer-arbre-genealogique-en-ligne/"}, {"@context": "https://schema.org", "@type": "BreadcrumbList", "itemListElement": [{"@type": "ListItem", "position": 1, "name": "Ramo", "item": "https://ramotree.com/fr/"}, {"@type": "ListItem", "position": 2, "name": "Créer son arbre généalogique", "item": "https://ramotree.com/fr/creer-arbre-genealogique-en-ligne/"}]}]</script>
 </head>
 <body>
 <header class="arriba">
@@ -44,8 +44,8 @@
 </header>
 <main class="articulo">
 <nav class="migas"><a href="../../fr/">Ramo</a> › <a href="../../fr/#guias">Guides</a></nav>
-<h1>Créez votre arbre généalogique et téléchargez-le gratuitement</h1>
-<p class="entrada">Ajoutez vos frères et sœurs, oncles, tantes et cousins, écrivez les prénoms et, si vous voulez, mettez une photo de chacun. L'arbre se dessine tout seul et vous le téléchargez en PDF ou en image, prêt à imprimer. Gratuit et sans inscription.</p>
+<h1>Créez votre arbre généalogique et téléchargez-le</h1>
+<p class="entrada">Ajoutez vos frères et sœurs, oncles, tantes et cousins, écrivez les prénoms et, si vous voulez, mettez une photo de chacun. L'arbre se dessine tout seul et vous le téléchargez en PDF ou en image, prêt à imprimer.</p>
 <div class="creador" id="creador">
   <div class="creador-vista">
     <canvas role="img" aria-label="Aperçu de l&#x27;arbre généalogique"></canvas>
@@ -59,24 +59,24 @@
   <div class="creador-panel">
     <label class="campo">Titre<input type="text" id="creador-titulo" maxlength="60"></label>
     <div class="campo-fila">
-      <label class="campo">Style<select id="creador-estilo"><option value="jardin">Jardin</option><option value="album">Album</option><option value="colores">En couleurs (pour enfants)</option><option value="blanco">Blanc (économise l&#x27;encre)</option></select></label>
+      <label class="campo">Style<select id="creador-estilo"><option value="jardin">Jardin</option><option value="album">Album</option><option value="colores">En couleurs</option><option value="espacio">Espace</option><option value="dinosaurios">Dinosaures</option><option value="mar">Fond marin</option><option value="blanco">Blanc (économise l&#x27;encre)</option></select></label>
       <label class="check"><input type="checkbox" id="creador-fotos"> Avec photo</label>
     </div>
     <div class="creador-datos"></div>
     <button type="button" class="mini" id="creador-empezar">Recommencer</button>
   </div>
 </div>
-<script>window.RAMO_PLANTILLA = {"titulo_def": "Mon arbre généalogique", "pie": "Fait gratuitement sur ramotree.com · Ramo, l'arbre généalogique facile", "et": {"yo": "Moi", "papa": "Papa", "mama": "Maman", "abuelo_h": "Papi", "abuelo_m": "Mamie", "hermano_h": "Frère", "hermano_m": "Sœur", "tio_h": "Oncle", "tio_m": "Tante", "primo_h": "Cousin", "primo_m": "Cousine"}, "ui": {"nombre": "Prénom (ou laissez vide)", "foto": "Ajouter une photo", "tu_familia": "Vous et votre famille", "abuelos": "Grands-parents", "de_papa": "Les parents de papa", "de_mama": "Les parents de maman", "tios_papa": "Oncles, tantes et cousins côté papa", "tios_mama": "Oncles, tantes et cousins côté maman", "titulo": "Titre", "estilo": "Style", "estilos": {"jardin": "Jardin", "album": "Album", "colores": "En couleurs (pour enfants)", "blanco": "Blanc (économise l'encre)"}, "fotos": "Avec photo", "pdf": "Télécharger le PDF", "png": "Télécharger l'image", "empezar": "Recommencer", "vista": "Aperçu de l'arbre généalogique", "aviso": "Le PDF n'a pas pu être préparé. Essayez de télécharger l'image.", "privado": "Les prénoms et les photos ne quittent pas votre navigateur : rien n'est envoyé nulle part."}, "idioma": "fr", "jspdf": "../../js/jspdf.umd.min.js"};</script>
-<script src="../../js/plantilla.js" defer></script>
+<script>window.RAMO_PLANTILLA = {"titulo_def": "Mon arbre généalogique", "pie": "Fait sur ramotree.com · Ramo, l'arbre généalogique facile", "et": {"yo": "Moi", "papa": "Papa", "mama": "Maman", "abuelo_h": "Papi", "abuelo_m": "Mamie", "hermano_h": "Frère", "hermano_m": "Sœur", "tio_h": "Oncle", "tio_m": "Tante", "primo_h": "Cousin", "primo_m": "Cousine"}, "ui": {"nombre": "Prénom (ou laissez vide)", "foto": "Ajouter une photo", "tu_familia": "Vous et votre famille", "abuelos": "Grands-parents", "de_papa": "Les parents de papa", "de_mama": "Les parents de maman", "tios_papa": "Oncles, tantes et cousins côté papa", "tios_mama": "Oncles, tantes et cousins côté maman", "titulo": "Titre", "estilo": "Style", "estilos": {"jardin": "Jardin", "album": "Album", "colores": "En couleurs", "espacio": "Espace", "dinosaurios": "Dinosaures", "mar": "Fond marin", "blanco": "Blanc (économise l'encre)"}, "fotos": "Avec photo", "pdf": "Télécharger le PDF", "png": "Télécharger l'image", "empezar": "Recommencer", "vista": "Aperçu de l'arbre généalogique", "aviso": "Le PDF n'a pas pu être préparé. Essayez de télécharger l'image.", "privado": "Les prénoms et les photos ne quittent pas votre navigateur : rien n'est envoyé nulle part."}, "idioma": "fr", "jspdf": "../../js/jspdf.umd.min.js?v=e53ce4fa"};</script>
+<script src="../../js/plantilla.js?v=e37e52aa" defer></script>
 <h2>Comment ça marche</h2>
 <ol>
 <li><b>Ajoutez votre famille.</b> Avec les boutons « + », ajoutez frères, sœurs, oncles, tantes et cousins de chaque côté.</li>
 <li><b>Écrivez les prénoms</b>, ou laissez-les vides pour les remplir à la main.</li>
-<li><b>Ajoutez des photos si vous voulez</b>, avec le bouton appareil photo. Sinon, chacun apparaît avec ses initiales ou
-une place pour coller une photo ou faire un dessin.</li>
+<li><b>Ajoutez des photos si vous voulez</b>, avec le bouton appareil photo. Sinon, il reste un rond pour coller une
+photo ou faire un dessin.</li>
 <li><b>Choisissez le style et téléchargez-le</b> en PDF (A4 paysage) ou en image.</li>
 </ol>
-<p>Pour l'école, le style « En couleurs » est parfait, et le « Blanc » consomme peu d'encre. Des idées pour le faire avec
+<p>Pour l'école, les styles « En couleurs », « Espace », « Dinosaures » ou « Fond marin » sont parfaits, et le « Blanc » consomme peu d'encre. Des idées pour le faire avec
 les enfants : <a href="../../fr/arbre-genealogique-enfant/">arbre généalogique pour enfants</a>.</p>
 
 <h2>Votre famille est plus grande ?</h2>
@@ -99,7 +99,7 @@ PDF avec toute la famille. Et pour partir de zéro : <a href="../../fr/comment-f
   <a class="tienda play" href="https://play.google.com/store/apps/details?id=com.thenend.arbolgenealogico&amp;hl=fr&amp;referrer=utm_source%3Dweb%26utm_medium%3Dfr-plantilla"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 2.5v19l10.2-9.5z" fill="currentColor"/><path d="M14.2 12 17.6 8.8 6 2.1zM14.2 12l3.4 3.2L6 21.9z" fill="currentColor" opacity=".6"/><path d="m17.6 8.8 3.3 1.9c1 .6 1 2 0 2.6l-3.3 1.9-3.4-3.2z" fill="currentColor" opacity=".85"/></svg><span><small>DISPONIBLE SUR</small>Google Play</span></a>
   <a class="tienda store" href="https://apps.microsoft.com/detail/9MXWCM12VJMQ?hl=fr"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M3 3h8.5v8.5H3zM12.5 3H21v8.5h-8.5zM3 12.5h8.5V21H3zM12.5 12.5H21V21h-8.5z" fill="currentColor"/></svg><span><small>TÉLÉCHARGEZ-LE SUR</small>Microsoft Store</span></a>
 </div></div>
-    <div><b>Guides</b><ul><li><a href="../../fr/imprimer-arbre-genealogique/">Imprimer l&#x27;arbre en grand</a></li><li><a href="../../fr/arbre-genealogique-cadeau-noel/">Offrir l&#x27;arbre à Noël</a></li><li><a href="../../fr/calcul-lien-de-parente/">Calculer un lien de parenté</a></li><li><a href="../../fr/comment-faire-un-arbre-genealogique/">Faire un arbre généalogique</a></li><li><a href="../../fr/arbre-genealogique-enfant/">Arbre généalogique pour enfants</a></li><li><a href="../../fr/creer-arbre-genealogique-en-ligne/">Créer son arbre généalogique gratuitement</a></li></ul></div>
+    <div><b>Guides</b><ul><li><a href="../../fr/imprimer-arbre-genealogique/">Imprimer l&#x27;arbre en grand</a></li><li><a href="../../fr/arbre-genealogique-cadeau-noel/">Offrir l&#x27;arbre à Noël</a></li><li><a href="../../fr/calcul-lien-de-parente/">Calculer un lien de parenté</a></li><li><a href="../../fr/comment-faire-un-arbre-genealogique/">Faire un arbre généalogique</a></li><li><a href="../../fr/arbre-genealogique-enfant/">Arbre généalogique pour enfants</a></li><li><a href="../../fr/creer-arbre-genealogique-en-ligne/">Créer son arbre généalogique</a></li></ul></div>
     <div><b>Mentions</b><ul><li><a href="../../privacidad-android.html#fr">Politique de confidentialité</a></li>
       <li><a href="../../borrar-datos.html#fr">Supprimer vos données</a></li></ul></div>
   </div>

@@ -37,6 +37,12 @@
               texto: "#3a2a1a", suave: "#7a6650", titulo: "#5a3a1a", relleno: "#fffaf1", marco: true },
     colores:{ fondo: ["#ffffff", "#ffffff"], linea: "#7fae6a", tronco: "#7fae6a", h: "#3a86c8", m: "#e0607e", yo: "#e8a31c",
               texto: "#333333", suave: "#777777", titulo: "#e07a1c", relleno: "#ffffff", pastel: true },
+    espacio:{ fondo: ["#141c46", "#2a1a5e"], linea: "#8f9be6", tronco: "#ffd45c", h: "#7cc8ff", m: "#ff9ccb", yo: "#ffd45c",
+              texto: "#f6f3ff", suave: "#c3bdea", titulo: "#ffd45c", relleno: "#eef0ff", deco: espacio },
+    dinosaurios:{ fondo: ["#f8f4dc", "#e5efc6"], linea: "#8a7a4a", tronco: "#6f9a3c", h: "#2f7a8a", m: "#c0563a", yo: "#d08a12",
+              texto: "#3a3424", suave: "#7a7158", titulo: "#4f7a2a", relleno: "#ffffff", pastel: true, deco: dinosaurios },
+    mar:    { fondo: ["#e6f8ff", "#b4e0f2"], linea: "#3f8fb0", tronco: "#2a7fa8", h: "#1f6fb2", m: "#e0577a", yo: "#e8901c",
+              texto: "#173a4f", suave: "#4f7486", titulo: "#1f6f9a", relleno: "#ffffff", pastel: true, deco: mar },
     blanco: { fondo: ["#ffffff", "#ffffff"], linea: "#8a8a8a", tronco: "#555555", h: "#333333", m: "#333333", yo: "#111111",
               texto: "#222222", suave: "#777777", titulo: "#222222", relleno: "#ffffff" },
   };
@@ -110,6 +116,7 @@
       ctx.lineWidth = 1; ctx.strokeRect(30, 30, W - 60, H - 60);
     }
     if (st.hoja) hojas(ctx, st);
+    if (st.deco) { ctx.save(); st.deco(ctx); ctx.restore(); }
     // título
     ctx.fillStyle = st.titulo; ctx.textAlign = "center"; ctx.textBaseline = "alphabetic";
     var tt = (E.titulo || "").trim() || T.titulo_def, ft = 62;
@@ -145,6 +152,9 @@
   function nodo(ctx, st, n, r, S) {
     var p = n.p, col = p.tipo === "yo" ? st.yo : p.sexo === "m" ? st.m : st.h, img = E.fotos ? imagen(p) : null;
     ctx.save();
+    if (enPantalla && p.id === nuevo) {   // halo en la vista previa (no sale al descargar)
+      ctx.fillStyle = col; ctx.globalAlpha = .22; ctx.beginPath(); ctx.arc(n.x, n.y, r + 16, 0, Math.PI * 2); ctx.fill(); ctx.globalAlpha = 1;
+    }
     ctx.beginPath(); ctx.arc(n.x, n.y, r, 0, Math.PI * 2);
     ctx.fillStyle = st.pastel ? (p.tipo === "yo" ? "#fff1cf" : p.sexo === "m" ? "#fde6ec" : "#e3f0fb") : st.relleno; ctx.fill();
     if (img) {
@@ -196,6 +206,182 @@
     ctx.restore();
   }
 
+  // ---------- dibujos de los estilos para niños (en las esquinas, lejos de las personas) ----------
+  function azar(sem) { return function () { sem = (sem * 16807) % 2147483647; return (sem - 1) / 2147483646; }; }
+  function circulo(ctx, x, y, r, color) { ctx.fillStyle = color; ctx.beginPath(); ctx.arc(x, y, r, 0, Math.PI * 2); ctx.fill(); }
+  function elipse(ctx, x, y, rx, ry, a, color) { ctx.fillStyle = color; ctx.beginPath(); ctx.ellipse(x, y, rx, ry, a || 0, 0, Math.PI * 2); ctx.fill(); }
+  function estrella(ctx, x, y, r1, r2, puntas, color, giro) {
+    ctx.fillStyle = color; ctx.beginPath();
+    for (var i = 0; i < puntas * 2; i++) {
+      var a = (giro || -Math.PI / 2) + i * Math.PI / puntas, r = i % 2 ? r2 : r1;
+      ctx[i ? "lineTo" : "moveTo"](x + Math.cos(a) * r, y + Math.sin(a) * r);
+    }
+    ctx.closePath(); ctx.fill();
+  }
+
+  function espacio(ctx) {
+    var a = azar(7);
+    for (var i = 0; i < 170; i++) {   // estrellas
+      ctx.globalAlpha = 0.35 + a() * 0.6;
+      circulo(ctx, a() * W, a() * H, 0.7 + a() * 1.9, a() < 0.8 ? "#ffffff" : "#ffe9a8");
+    }
+    ctx.globalAlpha = 1;
+    [[250, 70, 11], [W - 300, 190, 9], [70, 520, 10], [W - 60, 470, 12], [420, H - 60, 8], [W - 470, H - 70, 10]].forEach(function (e) {
+      estrella(ctx, e[0], e[1], e[2], e[2] * 0.28, 4, "#fff6c8");
+    });
+    // planeta con anillo, arriba a la izquierda
+    var px = 120, py = 125, pr = 50;
+    ctx.save(); ctx.translate(px, py); ctx.rotate(-0.35);
+    ctx.strokeStyle = "#ffd9a0"; ctx.lineWidth = 7;
+    ctx.beginPath(); ctx.ellipse(0, 0, pr * 1.75, pr * 0.42, 0, Math.PI, Math.PI * 2); ctx.stroke();
+    var g = ctx.createLinearGradient(0, -pr, 0, pr); g.addColorStop(0, "#ffbe74"); g.addColorStop(1, "#e2583a");
+    circulo(ctx, 0, 0, pr, g);
+    ctx.globalAlpha = .25; elipse(ctx, 0, -14, pr * 0.95, 7, 0, "#fff"); elipse(ctx, 0, 16, pr * 0.9, 6, 0, "#8a2a1a"); ctx.globalAlpha = 1;
+    ctx.beginPath(); ctx.ellipse(0, 0, pr * 1.75, pr * 0.42, 0, 0, Math.PI); ctx.stroke();
+    ctx.restore();
+    // luna, arriba a la derecha
+    circulo(ctx, W - 125, 118, 44, "#f3eed8");
+    [[-14, -10, 9], [12, 8, 12], [-6, 20, 6], [18, -18, 5]].forEach(function (c) { circulo(ctx, W - 125 + c[0], 118 + c[1], c[2], "#dcd3b4"); });
+    // planeta pequeño, abajo a la izquierda
+    circulo(ctx, 70, H - 62, 24, "#3fc1b0");
+    ctx.globalAlpha = .35; elipse(ctx, 70, H - 68, 21, 4, 0, "#ffffff"); elipse(ctx, 70, H - 55, 20, 3, 0, "#0f6f66"); ctx.globalAlpha = 1;
+    // cohete, abajo a la derecha
+    ctx.save(); ctx.translate(W - 78, H - 72); ctx.rotate(0.6); ctx.scale(0.72, 0.72);
+    var fl = ctx.createLinearGradient(0, 40, 0, 95); fl.addColorStop(0, "#ffd23c"); fl.addColorStop(1, "rgba(255,110,40,0)");
+    ctx.fillStyle = fl; ctx.beginPath(); ctx.moveTo(-14, 40); ctx.quadraticCurveTo(0, 110, 14, 40); ctx.fill();
+    ctx.fillStyle = "#e8454a"; ctx.beginPath(); ctx.moveTo(-22, 20); ctx.lineTo(-38, 50); ctx.lineTo(-18, 42); ctx.fill();
+    ctx.beginPath(); ctx.moveTo(22, 20); ctx.lineTo(38, 50); ctx.lineTo(18, 42); ctx.fill();
+    ctx.fillStyle = "#f4f4fa"; ctx.beginPath(); ctx.moveTo(0, -62); ctx.bezierCurveTo(30, -36, 26, 20, 20, 44);
+    ctx.lineTo(-20, 44); ctx.bezierCurveTo(-26, 20, -30, -36, 0, -62); ctx.fill();
+    ctx.fillStyle = "#e8454a"; ctx.beginPath(); ctx.moveTo(0, -62); ctx.bezierCurveTo(14, -50, 20, -40, 22, -32); ctx.lineTo(-22, -32);
+    ctx.bezierCurveTo(-20, -40, -14, -50, 0, -62); ctx.fill();
+    circulo(ctx, 0, -6, 12, "#5a6fd0"); circulo(ctx, 0, -6, 8, "#9fd8ff");
+    ctx.restore();
+  }
+
+  function dinosaurios(ctx) {
+    // cometa, arriba a la izquierda
+    var cx = 190, cy = 118, cola = ctx.createLinearGradient(cx, cy, 40, 30);
+    cola.addColorStop(0, "rgba(255,200,90,.85)"); cola.addColorStop(1, "rgba(255,200,90,0)");
+    ctx.fillStyle = cola; ctx.beginPath(); ctx.moveTo(cx + 4, cy - 12); ctx.lineTo(30, 22); ctx.lineTo(18, 70); ctx.lineTo(cx - 10, cy + 10); ctx.fill();
+    ctx.strokeStyle = "rgba(255,230,160,.7)"; ctx.lineWidth = 2;
+    [[-6, 0], [6, 14]].forEach(function (d) { ctx.beginPath(); ctx.moveTo(cx + d[0], cy + d[1] - 6); ctx.lineTo(60 + d[0] * 6, 40 + d[1] * 3); ctx.stroke(); });
+    var halo = ctx.createRadialGradient(cx, cy, 2, cx, cy, 30);
+    halo.addColorStop(0, "rgba(255,250,220,1)"); halo.addColorStop(.45, "rgba(255,214,120,.8)"); halo.addColorStop(1, "rgba(255,190,80,0)");
+    circulo(ctx, cx, cy, 30, halo); circulo(ctx, cx, cy, 9, "#fffbe8");
+    // volcán al fondo, abajo (lo tapan las colinas por la base)
+    ctx.save(); ctx.translate(460, H - 70);
+    ctx.globalAlpha = .45; [[18, -112, 14], [34, -128, 18], [58, -138, 13]].forEach(function (h) { circulo(ctx, h[0], h[1], h[2], "#b9b2a4"); }); ctx.globalAlpha = 1;
+    ctx.fillStyle = "#c2a483"; ctx.beginPath(); ctx.moveTo(-110, 20); ctx.lineTo(-20, -86); ctx.lineTo(16, -86); ctx.lineTo(110, 20); ctx.fill();
+    ctx.fillStyle = "#b08f6c"; ctx.beginPath(); ctx.moveTo(16, -86); ctx.lineTo(110, 20); ctx.lineTo(40, 20); ctx.lineTo(6, -60); ctx.fill();
+    ctx.fillStyle = "#ff7a3a"; ctx.beginPath(); ctx.moveTo(-20, -86); ctx.lineTo(16, -86); ctx.lineTo(10, -74);
+    ctx.quadraticCurveTo(2, -78, 0, -62); ctx.quadraticCurveTo(-6, -78, -14, -74); ctx.fill();
+    ctx.restore();
+    // colinas abajo
+    ctx.fillStyle = "#cfe3a2"; ctx.beginPath(); ctx.moveTo(0, H);
+    ctx.lineTo(0, H - 70); ctx.quadraticCurveTo(W * 0.25, H - 110, W * 0.5, H - 72); ctx.quadraticCurveTo(W * 0.75, H - 36, W, H - 86);
+    ctx.lineTo(W, H); ctx.fill();
+    // pteranodon, arriba a la derecha, y otro pequeño más lejos
+    pteranodon(ctx, W - 150, 112, 1, "#9a86d2", "#7a66b8");
+    pteranodon(ctx, W - 300, 70, 0.45, "#b9abe2", "#9d8dd0");
+    // diplodocus, abajo a la izquierda
+    ctx.save(); ctx.translate(205, H - 30); ctx.scale(0.55, 0.55);
+    var v = "#6fae52";
+    ctx.fillStyle = v; ctx.beginPath(); ctx.moveTo(-58, -30); ctx.quadraticCurveTo(-120, -20, -150, 8); ctx.quadraticCurveTo(-110, -6, -56, -8); ctx.fill();
+    ctx.beginPath(); ctx.moveTo(38, -50); ctx.bezierCurveTo(60, -80, 70, -140, 98, -150); ctx.lineTo(108, -136); ctx.bezierCurveTo(88, -124, 76, -70, 58, -28); ctx.fill();
+    elipse(ctx, 0, -32, 70, 36, 0, v);
+    elipse(ctx, 110, -146, 22, 12, -0.1, v);
+    [-46, -20, 22, 46].forEach(function (x) { ctx.fillRect(x - 9, -16, 18, 30); });
+    ctx.globalAlpha = .35; [[-20, -44, 9], [10, -50, 7], [32, -36, 6], [-40, -26, 6]].forEach(function (c) { circulo(ctx, c[0], c[1], c[2], "#d9f0b0"); }); ctx.globalAlpha = 1;
+    circulo(ctx, 118, -150, 3.5, "#2a3a1a");
+    ctx.restore();
+    // estegosaurio, abajo a la derecha (mirando a la izquierda)
+    ctx.save(); ctx.translate(W - 110, H - 40); ctx.scale(-0.66, 0.66);
+    var n = "#e8955a";
+    ctx.fillStyle = "#d0603a";
+    [[-40, -58], [-14, -70], [14, -70], [40, -58]].forEach(function (pl) {
+      ctx.beginPath(); ctx.moveTo(pl[0] - 15, pl[1] + 16); ctx.lineTo(pl[0], pl[1] - 22); ctx.lineTo(pl[0] + 15, pl[1] + 16); ctx.fill();
+    });
+    ctx.fillStyle = n; ctx.beginPath(); ctx.moveTo(-60, -30); ctx.quadraticCurveTo(-110, -30, -135, -6); ctx.quadraticCurveTo(-100, -10, -58, -10); ctx.fill();
+    ctx.fillStyle = "#d0603a"; ctx.beginPath(); ctx.moveTo(-122, -16); ctx.lineTo(-130, -36); ctx.lineTo(-114, -18); ctx.fill();
+    ctx.beginPath(); ctx.moveTo(-110, -20); ctx.lineTo(-112, -40); ctx.lineTo(-100, -22); ctx.fill();
+    elipse(ctx, 0, -32, 72, 34, 0, n);
+    elipse(ctx, 78, -22, 22, 13, 0.25, n);
+    ctx.fillStyle = n; [-44, -18, 22, 46].forEach(function (x) { ctx.fillRect(x - 9, -16, 18, 30); });
+    circulo(ctx, 88, -26, 3.5, "#3a2412");
+    ctx.restore();
+    // huellas
+    ctx.globalAlpha = .18;
+    [[W - 470, H - 40], [W - 420, H - 56], [W - 370, H - 44]].forEach(function (h) {
+      elipse(ctx, h[0], h[1], 9, 12, 0, "#5a4a2a");
+      [-9, 0, 9].forEach(function (d) { circulo(ctx, h[0] + d, h[1] - 15, 3.5, "#5a4a2a"); });
+    });
+    ctx.globalAlpha = 1;
+  }
+
+  function pteranodon(ctx, x, y, t, ala, cuerpo) {   // de frente con las alas abiertas y la cabeza de perfil
+    ctx.save(); ctx.translate(x, y); ctx.scale(t, t);
+    [-1, 1].forEach(function (l) {   // alas: borde de delante con la «muñeca»; la membrana llega hasta los tobillos
+      ctx.fillStyle = ala; ctx.beginPath(); ctx.moveTo(6 * l, -6);
+      ctx.quadraticCurveTo(34 * l, -30, 58 * l, -30); ctx.lineTo(64 * l, -36); ctx.lineTo(66 * l, -28);
+      ctx.quadraticCurveTo(96 * l, -26, 122 * l, -6);
+      ctx.quadraticCurveTo(64 * l, -4, 10 * l, 30); ctx.lineTo(6 * l, 14); ctx.fill();
+      ctx.strokeStyle = cuerpo; ctx.lineWidth = 3; ctx.lineCap = "round"; ctx.beginPath(); ctx.moveTo(6 * l, -6);
+      ctx.quadraticCurveTo(34 * l, -30, 58 * l, -30); ctx.lineTo(64 * l, -32); ctx.quadraticCurveTo(96 * l, -26, 122 * l, -6); ctx.stroke();
+    });
+    elipse(ctx, 0, 6, 8, 22, 0, cuerpo);
+    ctx.fillStyle = cuerpo; ctx.beginPath(); ctx.moveTo(-4, 22); ctx.lineTo(-11, 34); ctx.lineTo(-1, 26); ctx.moveTo(4, 22); ctx.lineTo(11, 34); ctx.lineTo(1, 26); ctx.fill();
+    // cabeza de perfil mirando a la izquierda: pico largo y cresta hacia atrás
+    elipse(ctx, -2, -22, 11, 8, 0, cuerpo);
+    ctx.beginPath(); ctx.moveTo(-8, -26); ctx.lineTo(-48, -16); ctx.lineTo(-8, -17); ctx.fill();
+    ctx.beginPath(); ctx.moveTo(2, -28); ctx.lineTo(34, -42); ctx.lineTo(8, -20); ctx.fill();
+    circulo(ctx, -5, -24, 2.4, "#ffffff"); circulo(ctx, -5.5, -24, 1.2, "#1a1430");
+    ctx.restore();
+  }
+  function pez(ctx, x, y, t, cuerpo, raya, izq) {
+    ctx.save(); ctx.translate(x, y); ctx.scale(izq ? -t : t, t);
+    ctx.fillStyle = cuerpo; ctx.beginPath(); ctx.moveTo(-34, 0); ctx.lineTo(-60, -20); ctx.lineTo(-56, 0); ctx.lineTo(-60, 20); ctx.fill();
+    elipse(ctx, 0, 0, 42, 25, 0, cuerpo);
+    ctx.fillStyle = raya; ctx.beginPath(); ctx.ellipse(-8, 0, 7, 23, 0, 0, Math.PI * 2); ctx.fill();
+    circulo(ctx, 22, -6, 6, "#ffffff"); circulo(ctx, 24, -6, 3, "#1a2a3a");
+    ctx.restore();
+  }
+  function mar(ctx) {
+    var a = azar(11);
+    // rayos de luz
+    ctx.globalAlpha = .18; ctx.fillStyle = "#ffffff";
+    [[300, 120], [700, 90], [1100, 130]].forEach(function (r) { ctx.beginPath(); ctx.moveTo(r[0], 0); ctx.lineTo(r[0] + r[1], 0); ctx.lineTo(r[0] + r[1] * 2.6, H); ctx.lineTo(r[0] + r[1] * 1.4, H); ctx.fill(); });
+    ctx.globalAlpha = 1;
+    // arena
+    ctx.fillStyle = "#f3e2b4"; ctx.beginPath(); ctx.moveTo(0, H); ctx.lineTo(0, H - 62);
+    ctx.quadraticCurveTo(W * 0.3, H - 90, W * 0.55, H - 64); ctx.quadraticCurveTo(W * 0.8, H - 42, W, H - 72); ctx.lineTo(W, H); ctx.fill();
+    // algas
+    function alga(x, alto, color, fase) {
+      ctx.strokeStyle = color; ctx.lineWidth = 9; ctx.lineCap = "round"; ctx.beginPath(); ctx.moveTo(x, H - 22);
+      for (var i = 1; i <= 4; i++) ctx.quadraticCurveTo(x + (i % 2 ? 14 : -14) * fase, H - 22 - alto * (i - 0.5) / 4, x, H - 22 - alto * i / 4);
+      ctx.stroke();
+    }
+    alga(34, 84, "#3f9a62", 1); alga(60, 64, "#5bb878", -1); alga(86, 90, "#2f8a56", 1);
+    alga(W - 38, 88, "#3f9a62", -1); alga(W - 64, 66, "#5bb878", 1);
+    // estrella de mar y concha
+    ctx.save(); ctx.translate(W - 190, H - 48); estrella(ctx, 0, 0, 30, 13, 5, "#ff6f61", -Math.PI / 2 + 0.2); ctx.restore();
+    ctx.save(); ctx.translate(210, H - 46); ctx.fillStyle = "#f7a9b8";
+    ctx.beginPath(); ctx.moveTo(0, 12); ctx.arc(0, 12, 26, Math.PI * 1.1, Math.PI * 1.9); ctx.closePath(); ctx.fill();
+    ctx.strokeStyle = "#e07a90"; ctx.lineWidth = 2; [-0.35, -0.15, 0.05, 0.25].forEach(function (d) { ctx.beginPath(); ctx.moveTo(0, 12); ctx.lineTo(Math.sin(d) * 24, 12 - Math.cos(d) * 24); ctx.stroke(); });
+    ctx.restore();
+    // peces
+    pez(ctx, 130, 120, 1.15, "#ff9a3c", "#ffffff", false);
+    pez(ctx, 200, 200, 0.6, "#ff9a3c", "#ffffff", false);
+    pez(ctx, W - 135, 115, 1.1, "#ffd23c", "#2f7fd0", true);
+    pez(ctx, W - 215, 190, 0.6, "#7fd0e0", "#2f7fd0", true);
+    // burbujas
+    ctx.strokeStyle = "#ffffff"; ctx.lineWidth = 2.5; ctx.globalAlpha = .75;
+    [[26, 330], [W - 26, 340]].forEach(function (c) {
+      for (var i = 0; i < 6; i++) { ctx.beginPath(); ctx.arc(c[0] + (a() - 0.5) * 12, c[1] + i * 42, 4 + a() * 6, 0, Math.PI * 2); ctx.stroke(); }
+    });
+    ctx.globalAlpha = 1;
+  }
+
   // ---------- vista previa ----------
   var lienzo = raiz.querySelector("canvas"), pendiente = false;
   function pedir() { if (!pendiente) { pendiente = true; requestAnimationFrame(pintar); } }
@@ -203,7 +389,7 @@
     pendiente = false;
     var dpr = Math.min(2, window.devicePixelRatio || 1), ancho = lienzo.clientWidth || 800;
     lienzo.width = Math.round(ancho * dpr); lienzo.height = Math.round(ancho * dpr * H / W);
-    dibujar(lienzo.getContext("2d"), lienzo.width / W);
+    enPantalla = true; dibujar(lienzo.getContext("2d"), lienzo.width / W); enPantalla = false;
   }
   window.addEventListener("resize", pedir);
   if (document.fonts && document.fonts.load) document.fonts.load("600 20px Titulos").then(pedir, pedir);
@@ -215,7 +401,7 @@
   function fila(p, quitar) {
     var f = el("div", "persona " + (p.sexo === "m" ? "es-m" : p.sexo === "h" ? "es-h" : "es-yo"));
     var lab = el("label"), span = el("span", "et", etiqueta(p)), inp = el("input");
-    inp.type = "text"; inp.value = p.nombre; inp.placeholder = T.ui.nombre; inp.maxLength = 40;
+    inp.type = "text"; inp.dataset.id = p.id; inp.value = p.nombre; inp.placeholder = T.ui.nombre; inp.maxLength = 40;
     inp.addEventListener("input", function () { p.nombre = inp.value; guardar(); pedir(); });
     lab.appendChild(span); lab.appendChild(inp); f.appendChild(lab);
     var foto = el("label", "foto-btn" + (p.foto ? " con" : ""), p.foto ? "" : "📷");
@@ -251,20 +437,26 @@
       t.hijos.forEach(function (h, j) { hs.appendChild(fila(h, function () { t.hijos.splice(j, 1); cambio(); })); });
       var add = el("div", "anadir");
       if (t.hijos.length < 6) {
-        add.appendChild(boton("+ " + T.et.primo_h, function () { t.hijos.push(persona("primo", "h")); cambio(); }));
-        add.appendChild(boton("+ " + T.et.primo_m, function () { t.hijos.push(persona("primo", "m")); cambio(); }));
+        add.appendChild(boton("+ " + T.et.primo_h, function () { anadir(t.hijos, persona("primo", "h")); }));
+        add.appendChild(boton("+ " + T.et.primo_m, function () { anadir(t.hijos, persona("primo", "m")); }));
       }
       hs.appendChild(add); caja.appendChild(hs); g.appendChild(caja);
     });
     if (lista.length < 6) {
       var add = el("div", "anadir");
-      add.appendChild(boton("+ " + T.et.tio_h, function () { lista.push(persona("tio", "h")); cambio(); }));
-      add.appendChild(boton("+ " + T.et.tio_m, function () { lista.push(persona("tio", "m")); cambio(); }));
+      add.appendChild(boton("+ " + T.et.tio_h, function () { anadir(lista, persona("tio", "h")); }));
+      add.appendChild(boton("+ " + T.et.tio_m, function () { anadir(lista, persona("tio", "m")); }));
       g.appendChild(add);
     }
     return g;
   }
   function cambio() { guardar(); montar(); pedir(); }
+  var nuevo = null, tNuevo = 0, enPantalla = false;
+  function anadir(lista, p) {   // la persona nueva sale resaltada en el árbol y con el cursor en su nombre
+    lista.push(p); nuevo = p.id; cambio();
+    var i = raiz.querySelector('input[data-id="' + p.id + '"]'); if (i) i.focus();
+    clearTimeout(tNuevo); tNuevo = setTimeout(function () { nuevo = null; pedir(); }, 1800);
+  }
   function montar() {
     panel.innerHTML = "";
     var g = grupo(T.ui.tu_familia);
@@ -272,8 +464,8 @@
     E.hermanos.forEach(function (h, i) { g.appendChild(fila(h, function () { E.hermanos.splice(i, 1); cambio(); })); });
     if (E.hermanos.length < 8) {
       var add = el("div", "anadir");
-      add.appendChild(boton("+ " + T.et.hermano_h, function () { E.hermanos.push(persona("hermano", "h")); cambio(); }));
-      add.appendChild(boton("+ " + T.et.hermano_m, function () { E.hermanos.push(persona("hermano", "m")); cambio(); }));
+      add.appendChild(boton("+ " + T.et.hermano_h, function () { anadir(E.hermanos, persona("hermano", "h")); }));
+      add.appendChild(boton("+ " + T.et.hermano_m, function () { anadir(E.hermanos, persona("hermano", "m")); }));
       g.appendChild(add);
     }
     g.appendChild(fila(E.papa)); g.appendChild(fila(E.mama));

@@ -30,8 +30,8 @@
 <link rel="icon" href="../../img/icono-64.png" sizes="64x64">
 <link rel="apple-touch-icon" href="../../img/icono-192.png">
 <link rel="preload" href="../../fuentes/titulos.woff2" as="font" type="font/woff2" crossorigin>
-<link rel="stylesheet" href="../../estilo.css">
-<script type="application/ld+json">[{"@context": "https://schema.org", "@type": "Article", "headline": "Erstelle deinen Stammbaum und lade ihn kostenlos herunter", "description": "Erstelle deinen Stammbaum kostenlos online: Großeltern, Eltern, Onkel, Tanten, Cousins und Geschwister, mit Namen und Fotos. Als PDF oder Bild zum Ausdrucken.", "inLanguage": "de", "datePublished": "2026-11-16", "dateModified": "2026-11-16", "image": "https://ramotree.com/img/de/creador.webp", "author": {"@type": "Organization", "name": "Ramo", "url": "https://ramotree.com/de/"}, "publisher": {"@type": "Organization", "name": "Ramo", "logo": {"@type": "ImageObject", "url": "https://ramotree.com/img/icono-512.png"}}, "mainEntityOfPage": "https://ramotree.com/de/stammbaum-online-erstellen/"}, {"@context": "https://schema.org", "@type": "BreadcrumbList", "itemListElement": [{"@type": "ListItem", "position": 1, "name": "Ramo", "item": "https://ramotree.com/de/"}, {"@type": "ListItem", "position": 2, "name": "Stammbaum kostenlos online erstellen", "item": "https://ramotree.com/de/stammbaum-online-erstellen/"}]}]</script>
+<link rel="stylesheet" href="../../estilo.css?v=83f1b3a0">
+<script type="application/ld+json">[{"@context": "https://schema.org", "@type": "Article", "headline": "Erstelle deinen Stammbaum und lade ihn herunter", "description": "Erstelle deinen Stammbaum kostenlos online: Großeltern, Eltern, Onkel, Tanten, Cousins und Geschwister, mit Namen und Fotos. Als PDF oder Bild zum Ausdrucken.", "inLanguage": "de", "datePublished": "2026-11-16", "dateModified": "2026-11-16", "image": "https://ramotree.com/img/de/creador.webp", "author": {"@type": "Organization", "name": "Ramo", "url": "https://ramotree.com/de/"}, "publisher": {"@type": "Organization", "name": "Ramo", "logo": {"@type": "ImageObject", "url": "https://ramotree.com/img/icono-512.png"}}, "mainEntityOfPage": "https://ramotree.com/de/stammbaum-online-erstellen/"}, {"@context": "https://schema.org", "@type": "BreadcrumbList", "itemListElement": [{"@type": "ListItem", "position": 1, "name": "Ramo", "item": "https://ramotree.com/de/"}, {"@type": "ListItem", "position": 2, "name": "Stammbaum online erstellen", "item": "https://ramotree.com/de/stammbaum-online-erstellen/"}]}]</script>
 </head>
 <body>
 <header class="arriba">
@@ -44,8 +44,8 @@
 </header>
 <main class="articulo">
 <nav class="migas"><a href="../../de/">Ramo</a> › <a href="../../de/#guias">Ratgeber</a></nav>
-<h1>Erstelle deinen Stammbaum und lade ihn kostenlos herunter</h1>
-<p class="entrada">Füge Geschwister, Onkel, Tanten und Cousins hinzu, schreib die Namen dazu und, wenn du magst, ein Foto von jedem. Der Stammbaum zeichnet sich selbst, und du lädst ihn als PDF oder Bild herunter, fertig zum Ausdrucken. Kostenlos und ohne Anmeldung.</p>
+<h1>Erstelle deinen Stammbaum und lade ihn herunter</h1>
+<p class="entrada">Füge Geschwister, Onkel, Tanten und Cousins hinzu, schreib die Namen dazu und, wenn du magst, ein Foto von jedem. Der Stammbaum zeichnet sich selbst, und du lädst ihn als PDF oder Bild herunter, fertig zum Ausdrucken.</p>
 <div class="creador" id="creador">
   <div class="creador-vista">
     <canvas role="img" aria-label="Vorschau des Stammbaums"></canvas>
@@ -59,24 +59,24 @@
   <div class="creador-panel">
     <label class="campo">Titel<input type="text" id="creador-titulo" maxlength="60"></label>
     <div class="campo-fila">
-      <label class="campo">Stil<select id="creador-estilo"><option value="jardin">Garten</option><option value="album">Album</option><option value="colores">Bunt (für Kinder)</option><option value="blanco">Weiß (spart Tinte)</option></select></label>
+      <label class="campo">Stil<select id="creador-estilo"><option value="jardin">Garten</option><option value="album">Album</option><option value="colores">Bunt</option><option value="espacio">Weltraum</option><option value="dinosaurios">Dinosaurier</option><option value="mar">Unterwasser</option><option value="blanco">Weiß (spart Tinte)</option></select></label>
       <label class="check"><input type="checkbox" id="creador-fotos"> Mit Foto</label>
     </div>
     <div class="creador-datos"></div>
     <button type="button" class="mini" id="creador-empezar">Neu anfangen</button>
   </div>
 </div>
-<script>window.RAMO_PLANTILLA = {"titulo_def": "Mein Stammbaum", "pie": "Kostenlos erstellt auf ramotree.com · Ramo, der einfache Stammbaum", "et": {"yo": "Ich", "papa": "Papa", "mama": "Mama", "abuelo_h": "Opa", "abuelo_m": "Oma", "hermano_h": "Bruder", "hermano_m": "Schwester", "tio_h": "Onkel", "tio_m": "Tante", "primo_h": "Cousin", "primo_m": "Cousine"}, "ui": {"nombre": "Name (oder leer lassen)", "foto": "Foto hinzufügen", "tu_familia": "Du und deine Familie", "abuelos": "Großeltern", "de_papa": "Papas Eltern", "de_mama": "Mamas Eltern", "tios_papa": "Onkel, Tanten und Cousins von Papas Seite", "tios_mama": "Onkel, Tanten und Cousins von Mamas Seite", "titulo": "Titel", "estilo": "Stil", "estilos": {"jardin": "Garten", "album": "Album", "colores": "Bunt (für Kinder)", "blanco": "Weiß (spart Tinte)"}, "fotos": "Mit Foto", "pdf": "PDF herunterladen", "png": "Bild herunterladen", "empezar": "Neu anfangen", "vista": "Vorschau des Stammbaums", "aviso": "Das PDF konnte nicht erstellt werden. Lade stattdessen das Bild herunter.", "privado": "Namen und Fotos verlassen deinen Browser nicht: Es wird nichts hochgeladen."}, "idioma": "de", "jspdf": "../../js/jspdf.umd.min.js"};</script>
-<script src="../../js/plantilla.js" defer></script>
+<script>window.RAMO_PLANTILLA = {"titulo_def": "Mein Stammbaum", "pie": "Erstellt auf ramotree.com · Ramo, der einfache Stammbaum", "et": {"yo": "Ich", "papa": "Papa", "mama": "Mama", "abuelo_h": "Opa", "abuelo_m": "Oma", "hermano_h": "Bruder", "hermano_m": "Schwester", "tio_h": "Onkel", "tio_m": "Tante", "primo_h": "Cousin", "primo_m": "Cousine"}, "ui": {"nombre": "Name (oder leer lassen)", "foto": "Foto hinzufügen", "tu_familia": "Du und deine Familie", "abuelos": "Großeltern", "de_papa": "Papas Eltern", "de_mama": "Mamas Eltern", "tios_papa": "Onkel, Tanten und Cousins von Papas Seite", "tios_mama": "Onkel, Tanten und Cousins von Mamas Seite", "titulo": "Titel", "estilo": "Stil", "estilos": {"jardin": "Garten", "album": "Album", "colores": "Bunt", "espacio": "Weltraum", "dinosaurios": "Dinosaurier", "mar": "Unterwasser", "blanco": "Weiß (spart Tinte)"}, "fotos": "Mit Foto", "pdf": "PDF herunterladen", "png": "Bild herunterladen", "empezar": "Neu anfangen", "vista": "Vorschau des Stammbaums", "aviso": "Das PDF konnte nicht erstellt werden. Lade stattdessen das Bild herunter.", "privado": "Namen und Fotos verlassen deinen Browser nicht: Es wird nichts hochgeladen."}, "idioma": "de", "jspdf": "../../js/jspdf.umd.min.js?v=e53ce4fa"};</script>
+<script src="../../js/plantilla.js?v=e37e52aa" defer></script>
 <h2>So geht's</h2>
 <ol>
 <li><b>Füge deine Familie hinzu.</b> Mit den „+“-Knöpfen kommen Geschwister, Onkel, Tanten und Cousins von jeder Seite dazu.</li>
 <li><b>Schreib die Namen</b> oder lass sie leer, um sie später von Hand auszufüllen.</li>
-<li><b>Füge Fotos hinzu, wenn du magst</b>, mit dem Kamera-Knopf. Sonst erscheint jeder mit seinen Initialen oder mit Platz
-für ein Foto oder ein Bild.</li>
+<li><b>Füge Fotos hinzu, wenn du magst</b>, mit dem Kamera-Knopf. Sonst bleibt ein runder Platz zum Einkleben eines
+Fotos oder zum Malen.</li>
 <li><b>Wähle den Stil und lade ihn herunter</b>, als PDF (A4 quer) oder als Bild.</li>
 </ol>
-<p>Für die Schule passt der Stil „Bunt“ sehr gut, und „Weiß“ braucht wenig Tinte. Ideen für Kinder:
+<p>Für die Schule passen die Stile „Bunt“, „Weltraum“, „Dinosaurier“ oder „Unterwasser“ sehr gut, und „Weiß“ braucht wenig Tinte. Ideen für Kinder:
 <a href="../../de/stammbaum-fuer-kinder/">Stammbaum für Kinder</a>.</p>
 
 <h2>Deine Familie ist größer?</h2>
@@ -99,7 +99,7 @@ ganzen Familie teilen. Und für den Anfang: <a href="../../de/stammbaum-erstelle
   <a class="tienda play" href="https://play.google.com/store/apps/details?id=com.thenend.arbolgenealogico&amp;hl=de&amp;referrer=utm_source%3Dweb%26utm_medium%3Dde-plantilla"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 2.5v19l10.2-9.5z" fill="currentColor"/><path d="M14.2 12 17.6 8.8 6 2.1zM14.2 12l3.4 3.2L6 21.9z" fill="currentColor" opacity=".6"/><path d="m17.6 8.8 3.3 1.9c1 .6 1 2 0 2.6l-3.3 1.9-3.4-3.2z" fill="currentColor" opacity=".85"/></svg><span><small>JETZT BEI</small>Google Play</span></a>
   <a class="tienda store" href="https://apps.microsoft.com/detail/9MXWCM12VJMQ?hl=de"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M3 3h8.5v8.5H3zM12.5 3H21v8.5h-8.5zM3 12.5h8.5V21H3zM12.5 12.5H21V21h-8.5z" fill="currentColor"/></svg><span><small>HOL ES DIR IM</small>Microsoft Store</span></a>
 </div></div>
-    <div><b>Ratgeber</b><ul><li><a href="../../de/stammbaum-drucken/">Stammbaum groß drucken</a></li><li><a href="../../de/stammbaum-weihnachtsgeschenk/">Stammbaum zu Weihnachten schenken</a></li><li><a href="../../de/verwandtschaftsgrad-berechnen/">Verwandtschaftsgrad berechnen</a></li><li><a href="../../de/stammbaum-erstellen/">Stammbaum erstellen</a></li><li><a href="../../de/stammbaum-fuer-kinder/">Stammbaum für Kinder</a></li><li><a href="../../de/stammbaum-online-erstellen/">Stammbaum kostenlos online erstellen</a></li></ul></div>
+    <div><b>Ratgeber</b><ul><li><a href="../../de/stammbaum-drucken/">Stammbaum groß drucken</a></li><li><a href="../../de/stammbaum-weihnachtsgeschenk/">Stammbaum zu Weihnachten schenken</a></li><li><a href="../../de/verwandtschaftsgrad-berechnen/">Verwandtschaftsgrad berechnen</a></li><li><a href="../../de/stammbaum-erstellen/">Stammbaum erstellen</a></li><li><a href="../../de/stammbaum-fuer-kinder/">Stammbaum für Kinder</a></li><li><a href="../../de/stammbaum-online-erstellen/">Stammbaum online erstellen</a></li></ul></div>
     <div><b>Rechtliches</b><ul><li><a href="../../privacidad-android.html#de">Datenschutzerklärung</a></li>
       <li><a href="../../borrar-datos.html#de">Deine Daten löschen</a></li></ul></div>
   </div>

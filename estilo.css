@@ -191,3 +191,6 @@ figcaption { font-size: 15px; color: var(--suave); margin-top: 10px; text-align:
             border-radius: var(--radio); padding: 16px 20px; margin: 22px 0; }
 .descarga a.boton { background: var(--acento); color: #fff8ee; padding: 11px 20px; border-radius: 999px; font-weight: 650; text-decoration: none; }
 .descarga span { color: var(--suave); font-size: 16px; }
+
+/* captura ancha que se sale del texto para que se lea la letra pequeña */
+.articulo figure.grande { width: min(1080px, calc(100vw - 32px)); max-width: none; position: relative; left: 50%; transform: translateX(-50%); }

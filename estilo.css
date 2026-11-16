@@ -1,0 +1,170 @@
+/* Web de Ramo: colores del tema Álbum (sepia), letra de los títulos de la tienda (Barlow Semi Condensed)
+   con la letra del sistema para el texto. */
+@font-face { font-family: "Titulos"; src: url(fuentes/titulos.woff2) format("woff2"); font-weight: 600; font-display: swap; }
+
+:root {
+  --fondo: #f4ede1; --fondo-2: #ebe1d0; --papel: #fffaf1; --linea: #dccdb5;
+  --tinta: #2f2318; --suave: #6e5d4b; --acento: #7b4a1e; --acento-2: #9a6a32; --oro: #b8862b;
+  --radio: 18px;
+}
+* { box-sizing: border-box; }
+html { scroll-behavior: smooth; }
+body { margin: 0; background: var(--fondo); color: var(--tinta);
+       font: 400 18px/1.6 system-ui, -apple-system, "Segoe UI", Roboto, sans-serif; -webkit-text-size-adjust: 100%; }
+img { max-width: 100%; height: auto; display: block; }
+a { color: var(--acento); }
+h1, h2, h3 { font-family: "Titulos", "Barlow Semi Condensed", "Arial Narrow", sans-serif; font-weight: 600; line-height: 1.12;
+             letter-spacing: -.005em; margin: 0 0 .4em; }
+h1 { font-size: clamp(36px, 6vw, 58px); }
+h2 { font-size: clamp(28px, 4vw, 40px); }
+h3 { font-size: 24px; }
+h1 em, h2 em { font-style: normal; color: var(--acento-2); }
+b, strong { font-weight: 650; }
+
+/* cabecera */
+.arriba { position: sticky; top: 0; z-index: 5; display: flex; align-items: center; justify-content: space-between; gap: 12px;
+          padding: 10px max(16px, calc(50% - 560px)); background: rgba(244, 237, 225, .93); backdrop-filter: blur(8px);
+          border-bottom: 1px solid var(--linea); }
+.marca { display: flex; align-items: center; gap: 10px; text-decoration: none; color: var(--tinta);
+         font: 600 26px "Titulos", sans-serif; }
+.marca img { border-radius: 9px; }
+.menu { display: flex; align-items: center; gap: 4px 16px; font-size: 16px; }
+.menu > a { color: var(--tinta); text-decoration: none; }
+.menu .descargar { background: var(--acento); color: #fff8ee; padding: 7px 16px; border-radius: 999px; font-weight: 650; }
+.idiomas { position: relative; }
+.idiomas summary { cursor: pointer; list-style: none; color: var(--tinta); }
+.idiomas summary::-webkit-details-marker { display: none; }
+.idiomas summary::after { content: " ▾"; color: var(--suave); }
+.idiomas div { position: absolute; right: 0; top: 30px; background: var(--papel); border: 1px solid var(--linea);
+               border-radius: 12px; padding: 6px; display: grid; min-width: 150px; box-shadow: 0 10px 30px rgba(60, 40, 20, .15); }
+.idiomas div a { padding: 7px 12px; border-radius: 8px; text-decoration: none; color: var(--tinta); }
+.idiomas div a:hover, .idiomas div a[aria-current] { background: var(--fondo-2); }
+
+main { max-width: 1120px; margin: 0 auto; padding: 0 16px; }
+
+/* botones de tienda */
+.tiendas { display: flex; flex-wrap: wrap; gap: 10px; margin: 18px 0; }
+.tienda { display: inline-flex; align-items: center; gap: 10px; text-decoration: none; color: #fff8ee; background: var(--tinta);
+          border-radius: 12px; padding: 8px 16px 8px 12px; font: 600 19px/1.1 system-ui, sans-serif; }
+.tienda small { display: block; font-size: 12px; font-weight: 500; opacity: .8; letter-spacing: .02em; }
+.tienda svg { width: 26px; height: 26px; flex: none; }
+.tienda.play { background: var(--acento); }
+.tiendas.grande .tienda { padding: 11px 20px 11px 15px; font-size: 21px; }
+.tienda:hover { filter: brightness(1.1); }
+
+/* portada */
+.portada { display: grid; grid-template-columns: 1.05fr 1fr; gap: 40px; align-items: center; padding: 48px 0 24px; }
+.antetitulo { color: var(--suave); font-weight: 650; letter-spacing: .04em; text-transform: uppercase; font-size: 14px; margin: 0 0 10px; }
+.entrada { font-size: 21px; color: var(--suave); margin: 0 0 6px; }
+.nota { color: var(--suave); font-size: 15px; }
+.portada-imagenes { position: relative; min-height: 460px; }
+.portada-imagenes .ancha { position: absolute; right: 0; top: 40px; width: 82%; transform: rotate(2deg); }
+.portada-imagenes .movil { position: relative; z-index: 2; width: 230px; margin-top: 70px; }
+
+figure { margin: 0; }
+figure.movil img { border-radius: 26px; border: 8px solid #1d1712; box-shadow: 0 18px 40px rgba(60, 40, 20, .25); background: #1d1712; }
+figure.ancha img { border-radius: 6px; box-shadow: 0 14px 34px rgba(60, 40, 20, .22); }
+figcaption { font-size: 15px; color: var(--suave); margin-top: 10px; text-align: center; }
+
+.puntos { display: grid; grid-template-columns: repeat(4, 1fr); gap: 12px; margin: 30px 0 20px; }
+.puntos div { background: var(--papel); border: 1px solid var(--linea); border-radius: var(--radio); padding: 16px 18px; }
+.puntos b { display: block; font: 600 22px/1.15 "Titulos", sans-serif; margin-bottom: 4px; }
+.puntos span { color: var(--suave); font-size: 16px; line-height: 1.45; display: block; }
+
+/* bloques de la portada */
+.bloque { display: grid; grid-template-columns: 1fr 1fr; gap: 48px; align-items: center; padding: 56px 0;
+          border-top: 1px solid var(--linea); }
+.bloque.al-reves .bloque-texto { order: 2; }
+.bloque-texto ul { padding-left: 1.2em; }
+.bloque-texto li { margin: 6px 0; }
+.bloque-imagenes { display: flex; justify-content: center; gap: 18px; }
+.bloque-imagenes .movil { width: 250px; }
+.bloque-imagenes.n2 .movil { width: 46%; max-width: 240px; }
+.bloque-imagenes.n2 .movil:nth-child(2) { margin-top: 48px; }
+.bloque-imagenes .ancha { width: 100%; }
+
+/* precio */
+.precio { text-align: center; padding: 60px 0; border-top: 1px solid var(--linea); }
+.precio .tiendas { justify-content: center; }
+.planes { display: grid; grid-template-columns: 1fr 1fr; gap: 18px; text-align: left; max-width: 860px; margin: 24px auto 8px; }
+.plan { background: var(--papel); border: 1px solid var(--linea); border-radius: var(--radio); padding: 22px 26px; }
+.plan.completo { border: 2px solid var(--oro); }
+.plan ul { padding-left: 1.1em; margin: 0; }
+.plan li { margin: 6px 0; }
+
+/* guías y preguntas */
+.guias, .preguntas { padding: 56px 0; border-top: 1px solid var(--linea); }
+.lista-guias { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 18px; }
+.tarjeta-guia { display: block; text-decoration: none; color: var(--tinta); background: var(--papel); border: 1px solid var(--linea);
+                border-radius: var(--radio); overflow: hidden; }
+.tarjeta-guia img { width: 100%; aspect-ratio: 16 / 9; object-fit: cover; object-position: top; }
+.tarjeta-guia b { display: block; font: 600 24px/1.15 "Titulos", sans-serif; padding: 16px 20px 4px; }
+.tarjeta-guia span { display: block; padding: 0 20px 18px; color: var(--suave); font-size: 16px; }
+.tarjeta-guia:hover { border-color: var(--acento-2); }
+.preguntas details { background: var(--papel); border: 1px solid var(--linea); border-radius: 14px; margin: 10px 0; max-width: 860px; }
+.preguntas summary { cursor: pointer; padding: 14px 20px; font-weight: 650; }
+.preguntas details > div { padding: 0 20px 14px; color: var(--suave); }
+
+/* artículo (guías) */
+.articulo { max-width: 760px; padding-top: 28px; padding-bottom: 40px; }
+.articulo h1 { font-size: clamp(34px, 5.5vw, 50px); }
+.articulo h2 { font-size: 30px; margin-top: 1.6em; }
+.articulo h3 { margin-top: 1.3em; }
+.articulo figure { margin: 26px auto; }
+.articulo figure.movil { width: 260px; }
+.articulo .dos { display: flex; gap: 16px; justify-content: center; }
+.articulo .dos figure.movil { width: 46%; max-width: 250px; margin: 20px 0; }
+.articulo table { border-collapse: collapse; width: 100%; font-size: 16px; margin: 16px 0; background: var(--papel); }
+.articulo th, .articulo td { border: 1px solid var(--linea); padding: 8px 12px; text-align: left; vertical-align: top; }
+.articulo th { background: var(--fondo-2); }
+.articulo .consejo { background: var(--papel); border-left: 4px solid var(--oro); border-radius: 0 12px 12px 0; padding: 12px 18px; }
+.articulo ol li, .articulo ul li { margin: 7px 0; }
+.migas { font-size: 15px; color: var(--suave); margin-bottom: 18px; }
+.migas a { color: var(--suave); }
+.llamada { display: flex; gap: 20px; align-items: flex-start; background: var(--papel); border: 2px solid var(--oro);
+           border-radius: var(--radio); padding: 22px; margin: 44px 0 24px; }
+.llamada img { border-radius: 16px; flex: none; }
+.llamada p { margin: 4px 0 0; color: var(--suave); }
+.llamada .tiendas { margin-bottom: 0; }
+.otras { margin-bottom: 0; }
+
+/* pie */
+.pie { background: var(--fondo-2); border-top: 1px solid var(--linea); margin-top: 40px; padding: 36px max(16px, calc(50% - 560px)) 24px;
+       font-size: 16px; }
+.pie .columnas { display: grid; grid-template-columns: 1.4fr 1fr 1fr; gap: 24px; }
+.pie b { font: 600 20px "Titulos", sans-serif; }
+.pie p { margin: 4px 0; color: var(--suave); }
+.pie ul { list-style: none; padding: 0; margin: 8px 0; }
+.pie li { margin: 6px 0; }
+.pie a:not(.tienda) { color: var(--tinta); }
+.idiomas-pie { margin-top: 20px !important; font-size: 15px; }
+.idiomas-pie a { color: var(--suave); }
+
+/* raíz: elegir idioma */
+.elegir main { max-width: 520px; text-align: center; padding: 60px 16px; }
+.elegir main > img { margin: 0 auto 10px; border-radius: 22px; }
+.lista-idiomas { display: grid; gap: 10px; margin-top: 20px; }
+.lista-idiomas a { display: block; text-decoration: none; color: var(--tinta); background: var(--papel); border: 1px solid var(--linea);
+                   border-radius: 14px; padding: 12px 18px; }
+.lista-idiomas span { display: block; color: var(--suave); font-size: 15px; }
+
+@media (max-width: 860px) {
+  .portada, .bloque { grid-template-columns: 1fr; gap: 28px; }
+  .bloque.al-reves .bloque-texto { order: 0; }
+  .portada { padding-top: 28px; }
+  .portada-imagenes { min-height: 0; display: flex; align-items: flex-start; gap: 12px; }
+  .portada-imagenes .ancha { position: static; width: 62%; transform: none; margin-top: 30px; order: 2; }
+  .portada-imagenes .movil { width: 38%; margin-top: 0; }
+  .puntos { grid-template-columns: 1fr 1fr; }
+  .planes, .pie .columnas { grid-template-columns: 1fr; }
+  .bloque { padding: 40px 0; }
+}
+@media (max-width: 560px) {
+  body { font-size: 17px; }
+  .menu > a:not(.descargar) { display: none; }
+  .puntos { grid-template-columns: 1fr; }
+  .tiendas .tienda { flex: 1 1 100%; justify-content: center; }
+  .bloque-imagenes .movil { width: 70%; }
+  .llamada { flex-direction: column; }
+  figure.movil img { border-width: 6px; border-radius: 22px; }
+}

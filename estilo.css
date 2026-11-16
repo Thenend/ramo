@@ -168,3 +168,20 @@ figcaption { font-size: 15px; color: var(--suave); margin-top: 10px; text-align:
   .llamada { flex-direction: column; }
   figure.movil img { border-width: 6px; border-radius: 22px; }
 }
+
+/* calculadora de parentesco y tabla */
+.calculadora { background: var(--papel); border: 1px solid var(--linea); border-radius: var(--radio); padding: 20px 22px; margin: 24px 0; }
+.calculadora label { display: block; font-weight: 650; margin: 0 0 6px; }
+.calculadora select { width: 100%; font: inherit; font-size: 17px; padding: 10px 12px; border: 1px solid var(--linea);
+                      border-radius: 10px; background: #fff; color: var(--tinta); margin-bottom: 14px; }
+.calculadora fieldset { border: 0; padding: 0; margin: 0 0 6px; display: flex; flex-wrap: wrap; gap: 6px 18px; }
+.calculadora legend { font-weight: 650; padding: 0; margin-bottom: 6px; width: 100%; }
+.calculadora fieldset label { font-weight: 400; display: inline-flex; align-items: center; gap: 6px; margin: 0; }
+.calculadora .resultado { border-top: 1px solid var(--linea); margin-top: 12px; padding-top: 14px; }
+.calculadora .resultado .es { color: var(--suave); margin: 0; }
+.calculadora .resultado .nombre { font: 600 clamp(30px, 6vw, 40px)/1.1 "Titulos", sans-serif; color: var(--acento); margin: 2px 0 8px; }
+.calculadora .resultado p { margin: 4px 0; }
+.tabla-ancha { overflow-x: auto; margin: 16px 0; -webkit-overflow-scrolling: touch; }
+.tabla-ancha table { margin: 0; min-width: 640px; font-size: 15px; }
+.tabla-ancha th, .tabla-ancha td { padding: 7px 9px; }
+.tabla-ancha thead th:first-child { font-weight: 400; color: var(--suave); font-size: 13px; }

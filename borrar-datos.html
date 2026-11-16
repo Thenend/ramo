@@ -1,9 +1,9 @@
 <!doctype html>
-<html lang="es">
+<html lang="en">
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Borrar tus datos · Delete your data · Ramo</title>
+  <title>Delete your data · Borrar tus datos · Ramo</title>
   <style>
     :root { --fondo: #0e1016; --texto: #e8eaf0; --suave: #9aa2b6; --oro: #f5c451; }
     body { margin: 0; background: var(--fondo); color: var(--texto); font: 17px/1.6 system-ui, -apple-system, "Segoe UI", Roboto, sans-serif; }
@@ -25,33 +25,13 @@
 <body>
 <main>
   <nav>
-    <a href="#es" lang="es">Español</a>
     <a href="#en" lang="en">English</a>
+    <a href="#es" lang="es">Español</a>
     <a href="#fr" lang="fr">Français</a>
     <a href="#it" lang="it">Italiano</a>
     <a href="#de" lang="de">Deutsch</a>
     <a href="#pt" lang="pt-BR">Português</a>
   </nav>
-
-  <section id="es" lang="es">
-    <h1>Borrar tus datos</h1>
-    <p class="suave">Ramo – Easy Family Tree · aplicación para Android</p>
-
-    <h2>Cómo pedir que borremos tus datos</h2>
-    <ol>
-      <li>Abre Ramo, toca el botón «i» de «Mis árboles» y elige «Enviar sugerencias». También puedes escribir a la dirección de contacto que aparece en la ficha de Ramo en Google Play.</li>
-      <li>Escribe en el correo «Borrar mis datos» y mándalo desde la misma dirección con la que nos escribiste.</li>
-      <li>Borramos tus datos en un máximo de 30 días y te contestamos para confirmarlo.</li>
-    </ol>
-
-    <h2>Qué se borra</h2>
-    <p>Los registros de fallos que nos hayas mandado con «Enviar sugerencias» y los correos en los que venían. Es lo único que recibimos de la aplicación, así que no conservamos nada más.</p>
-
-    <h2>Lo que está en tu teléfono</h2>
-    <p>Tus árboles, fotos e historias solo están en tu teléfono; nosotros no los tenemos. Para borrarlos, borra cada árbol en «Mis árboles» o desinstala la aplicación, y borra también la carpeta <b>Documentos/Ramo</b>, donde se guarda una copia.</p>
-
-    <p class="suave">Más información en la <a href="privacidad-android.html#es">política de privacidad</a>.</p>
-  </section>
 
   <section id="en" lang="en">
     <h1>Delete your data</h1>
@@ -71,6 +51,26 @@
     <p>Your trees, photos and stories are only on your phone; we don't have them. To delete them, delete each tree in “My trees” or uninstall the app, and also delete the <b>Documents/Ramo</b> folder, where a copy is kept.</p>
 
     <p class="suave">More in the <a href="privacidad-android.html#en">privacy policy</a>.</p>
+  </section>
+
+  <section id="es" lang="es">
+    <h1>Borrar tus datos</h1>
+    <p class="suave">Ramo – Easy Family Tree · aplicación para Android</p>
+
+    <h2>Cómo pedir que borremos tus datos</h2>
+    <ol>
+      <li>Abre Ramo, toca el botón «i» de «Mis árboles» y elige «Enviar sugerencias». También puedes escribir a la dirección de contacto que aparece en la ficha de Ramo en Google Play.</li>
+      <li>Escribe en el correo «Borrar mis datos» y mándalo desde la misma dirección con la que nos escribiste.</li>
+      <li>Borramos tus datos en un máximo de 30 días y te contestamos para confirmarlo.</li>
+    </ol>
+
+    <h2>Qué se borra</h2>
+    <p>Los registros de fallos que nos hayas mandado con «Enviar sugerencias» y los correos en los que venían. Es lo único que recibimos de la aplicación, así que no conservamos nada más.</p>
+
+    <h2>Lo que está en tu teléfono</h2>
+    <p>Tus árboles, fotos e historias solo están en tu teléfono; nosotros no los tenemos. Para borrarlos, borra cada árbol en «Mis árboles» o desinstala la aplicación, y borra también la carpeta <b>Documentos/Ramo</b>, donde se guarda una copia.</p>
+
+    <p class="suave">Más información en la <a href="privacidad-android.html#es">política de privacidad</a>.</p>
   </section>
 
   <section id="fr" lang="fr">
@@ -156,7 +156,7 @@
 <script>
   // el idioma: el del enlace (#en…), si no el del navegador, y si no se tiene, inglés
   (function () {
-    var idiomas = ["es", "en", "fr", "it", "de", "pt"];
+    var idiomas = ["en", "es", "fr", "it", "de", "pt"];
     function elegir() {
       var h = location.hash.slice(1);
       var n = (navigator.language || "en").slice(0, 2).toLowerCase();

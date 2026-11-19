@@ -3,11 +3,11 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Ramo · Easy Family Tree · Árbol genealógico fácil</title>
+<title>Ramo – Easy Family Tree app for Android and Windows</title>
 <meta name="google-site-verification" content="LtQg0fvjUXgizOinJK4Hik2dmF4LWCQD9LK6uzXXBSo">
 <meta name="google-site-verification" content="g2fUW4EIGbSvkNhzoY03BsG8gzKO_woWByR-SqJkXzU">
 <meta name="p:domain_verify" content="f80c51e2879aed486688739866abf216">
-<meta name="description" content="Ramo: build your family tree on your phone or PC, share it as a PDF and print it or give it as a framed gift. No account, no ads, no subscription.">
+<meta name="description" content="Ramo is an easy family tree maker for Android and Windows: build your tree with photos, share it as a PDF and print it as a framed poster. In English, Spanish, French, Italian, German and Portuguese.">
 <link rel="canonical" href="https://ramotree.com/">
 <link rel="alternate" hreflang="en" href="https://ramotree.com/en/">
 <link rel="alternate" hreflang="es" href="https://ramotree.com/es/">
@@ -17,9 +17,14 @@
 <link rel="alternate" hreflang="pt-BR" href="https://ramotree.com/pt/">
 <link rel="alternate" hreflang="pt" href="https://ramotree.com/pt/">
 <link rel="alternate" hreflang="x-default" href="https://ramotree.com/">
-<script type="application/ld+json">{"@context": "https://schema.org", "@type": "WebSite", "name": "Ramo", "alternateName": ["Ramo Tree", "ramotree.com"], "url": "https://ramotree.com/"}</script>
-<link rel="icon" href="img/icono-64.png" sizes="64x64">
-<link rel="stylesheet" href="estilo.css?v=83f1b3a0">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="Ramo">
+<meta property="og:title" content="Ramo – Easy Family Tree app for Android and Windows">
+<meta property="og:description" content="Ramo is an easy family tree maker for Android and Windows: build your tree with photos, share it as a PDF and print it as a framed poster. In English, Spanish, French, Italian, German and Portuguese.">
+<meta property="og:url" content="https://ramotree.com/">
+<meta property="og:image" content="https://ramotree.com/img/en/compartir.jpg">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="theme-color" content="#f4ede1">
 <script>
 (function () {
   var idiomas = ["en", "es", "fr", "it", "de", "pt"];
@@ -27,25 +32,71 @@
   try { g = localStorage.getItem("ramo-idioma"); } catch (e) {}
   var l = idiomas.indexOf(h) >= 0 ? h : idiomas.indexOf(g) >= 0 ? g : null;
   if (!l) {
-    var n = navigator.languages || [navigator.language || "en"];
-    for (var i = 0; i < n.length && !l; i++) { var c = (n[i] || "").slice(0, 2).toLowerCase(); if (idiomas.indexOf(c) >= 0) l = c; }
+    var n = navigator.languages || [navigator.language || ""];
+    for (var i = 0; i < n.length; i++) {
+      var c = (n[i] || "").slice(0, 2).toLowerCase();
+      if (idiomas.indexOf(c) >= 0) { if (c !== "en") l = c; break; }
+    }
   }
-  location.replace((l || "en") + "/");
+  if (l) location.replace(l + "/");
 })();
 </script>
+<link rel="icon" href="img/icono-64.png" sizes="64x64">
+<link rel="apple-touch-icon" href="img/icono-192.png">
+<link rel="preload" href="fuentes/titulos.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="stylesheet" href="estilo.css?v=5a5f063d">
+<script type="application/ld+json">[{"@context": "https://schema.org", "@type": "WebSite", "name": "Ramo", "alternateName": ["Ramo Tree", "ramotree.com"], "url": "https://ramotree.com/"}, {"@context": "https://schema.org", "@type": "Organization", "@id": "https://ramotree.com/#ramo", "name": "Ramo", "url": "https://ramotree.com/", "logo": "https://ramotree.com/img/icono-512.png", "sameAs": ["https://play.google.com/store/apps/details?id=com.thenend.arbolgenealogico", "https://apps.microsoft.com/detail/9MXWCM12VJMQ", "https://www.pinterest.com/ramotreeapp/"]}]</script>
 </head>
-<body class="elegir">
+<body>
+<header class="arriba">
+  <a class="marca" href="./"><img src="img/icono-64.png" width="36" height="36" alt=""><span>Ramo</span></a>
+  <nav class="menu"><a href="#idiomas">Languages</a><a class="descargar" href="https://play.google.com/store/apps/details?id=com.thenend.arbolgenealogico&amp;hl=en&amp;referrer=utm_source%3Dweb%26utm_medium%3Den-raiz">Download</a></nav>
+</header>
 <main>
-  <img src="img/icono-192.png" width="96" height="96" alt="">
-  <h1>Ramo</h1>
-  <div class="lista-idiomas"><a href="en/" hreflang="en" lang="en" data-idioma="en">
-  <b>English</b><span>Easy Family Tree</span></a><a href="es/" hreflang="es" lang="es" data-idioma="es">
-  <b>Español</b><span>Árbol genealógico fácil</span></a><a href="fr/" hreflang="fr" lang="fr" data-idioma="fr">
-  <b>Français</b><span>Arbre généalogique facile</span></a><a href="it/" hreflang="it" lang="it" data-idioma="it">
-  <b>Italiano</b><span>Albero genealogico facile</span></a><a href="de/" hreflang="de" lang="de" data-idioma="de">
-  <b>Deutsch</b><span>Einfacher Stammbaum</span></a><a href="pt/" hreflang="pt" lang="pt-BR" data-idioma="pt">
-  <b>Português</b><span>Árvore genealógica fácil</span></a></div>
+<section class="portada">
+  <div class="portada-texto">
+    <p class="antetitulo">Easy Family Tree · Android &amp; Windows</p>
+    <h1>Ramo: your family tree, <em>easy to build, share and print</em></h1>
+    <p class="entrada">Ramo is a family tree app for Android phones and Windows PCs. Add your family by tapping the cards, send the tree to everyone as a PDF and print it large to frame or give as a gift. No account, no ads.</p>
+    <div class="tiendas grande">
+  <a class="tienda play" href="https://play.google.com/store/apps/details?id=com.thenend.arbolgenealogico&amp;hl=en&amp;referrer=utm_source%3Dweb%26utm_medium%3Den-raiz"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 2.5v19l10.2-9.5z" fill="currentColor"/><path d="M14.2 12 17.6 8.8 6 2.1zM14.2 12l3.4 3.2L6 21.9z" fill="currentColor" opacity=".6"/><path d="m17.6 8.8 3.3 1.9c1 .6 1 2 0 2.6l-3.3 1.9-3.4-3.2z" fill="currentColor" opacity=".85"/></svg><span><small>GET IT ON</small>Google Play</span></a>
+  <a class="tienda store" href="https://apps.microsoft.com/detail/9MXWCM12VJMQ?hl=en"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M3 3h8.5v8.5H3zM12.5 3H21v8.5h-8.5zM3 12.5h8.5V21H3zM12.5 12.5H21V21h-8.5z" fill="currentColor"/></svg><span><small>GET IT FROM</small>Microsoft Store</span></a>
+</div>
+    <p class="nota">Free to start · No account, no ads · No subscription</p>
+  </div>
+  <div class="portada-imagenes">
+    <figure class="movil"><img src="img/en/a-arbol.webp" width="600" height="1200" alt="The Smith family tree in Ramo, on a phone" fetchpriority="high"></figure>
+    <figure class="ancha"><img src="img/en/lamina.webp" width="1400" height="990" alt="Gift print of the Smith family tree in the Parchment style, with the dedication “For Grandma, Christmas 2026”" fetchpriority="high"></figure>
+  </div>
+</section>
+<section class="puntos"><div><b>Easy</b><span>Start with yourself and add your family by tapping the cards. Ramo arranges the tree for you.</span></div><div><b>Made to share</b><span>As a PDF or an image, or the tree itself so each relative can fill in their branch.</span></div><div><b>Made to print</b><span>On several sheets or as one poster: 11×14, 16×20, 18×24 in, or 50×70 cm.</span></div><div><b>Yours</b><span>Everything stays on your phone. No sign-up, no ads, works offline.</span></div></section>
+<section class="guias" id="idiomas">
+  <h2>Ramo in your language</h2>
+  <p>The app and this website are in six languages. Choose yours to see the app and the free guides: how to make a family tree, a printable template, a cousin calculator and more.</p>
+  <div class="raiz-idiomas"><div class="idioma-col" lang="en">
+  <a class="idioma-nombre" href="en/" hreflang="en" data-idioma="en"><b>English</b><span>Easy family tree app for Android and Windows.</span></a>
+  <ul><li><a href="en/print-family-tree/" hreflang="en" data-idioma="en">Printing a large tree</a></li><li><a href="en/family-tree-christmas-gift/" hreflang="en" data-idioma="en">A family tree for Christmas</a></li><li><a href="en/cousin-calculator/" hreflang="en" data-idioma="en">Cousin calculator</a></li><li><a href="en/how-to-make-a-family-tree/" hreflang="en" data-idioma="en">How to make a family tree</a></li><li><a href="en/family-tree-for-kids/" hreflang="en" data-idioma="en">Family tree for kids</a></li><li><a href="en/family-tree-maker/" hreflang="en" data-idioma="en">Family tree maker</a></li></ul>
+</div><div class="idioma-col" lang="es">
+  <a class="idioma-nombre" href="es/" hreflang="es" data-idioma="es"><b>Español</b><span>Árbol genealógico fácil para Android y Windows.</span></a>
+  <ul><li><a href="es/imprimir-arbol-genealogico/" hreflang="es" data-idioma="es">Imprimir el árbol en grande</a></li><li><a href="es/arbol-genealogico-regalo-navidad/" hreflang="es" data-idioma="es">Regalar el árbol en Navidad</a></li><li><a href="es/calculadora-parentesco/" hreflang="es" data-idioma="es">Calculadora de parentesco</a></li><li><a href="es/como-hacer-un-arbol-genealogico/" hreflang="es" data-idioma="es">Cómo hacer un árbol genealógico</a></li><li><a href="es/arbol-genealogico-para-ninos/" hreflang="es" data-idioma="es">Árbol genealógico para niños</a></li><li><a href="es/plantilla-arbol-genealogico/" hreflang="es" data-idioma="es">Crea tu árbol genealógico</a></li></ul>
+</div><div class="idioma-col" lang="fr">
+  <a class="idioma-nombre" href="fr/" hreflang="fr" data-idioma="fr"><b>Français</b><span>L&#x27;arbre généalogique facile, pour Android et Windows.</span></a>
+  <ul><li><a href="fr/imprimer-arbre-genealogique/" hreflang="fr" data-idioma="fr">Imprimer l&#x27;arbre en grand</a></li><li><a href="fr/arbre-genealogique-cadeau-noel/" hreflang="fr" data-idioma="fr">Offrir l&#x27;arbre à Noël</a></li><li><a href="fr/calcul-lien-de-parente/" hreflang="fr" data-idioma="fr">Calculer un lien de parenté</a></li><li><a href="fr/comment-faire-un-arbre-genealogique/" hreflang="fr" data-idioma="fr">Faire un arbre généalogique</a></li><li><a href="fr/arbre-genealogique-enfant/" hreflang="fr" data-idioma="fr">Arbre généalogique pour enfants</a></li><li><a href="fr/creer-arbre-genealogique-en-ligne/" hreflang="fr" data-idioma="fr">Créer son arbre généalogique</a></li></ul>
+</div><div class="idioma-col" lang="it">
+  <a class="idioma-nombre" href="it/" hreflang="it" data-idioma="it"><b>Italiano</b><span>L&#x27;albero genealogico facile, per Android e Windows.</span></a>
+  <ul><li><a href="it/stampare-albero-genealogico/" hreflang="it" data-idioma="it">Stampare l&#x27;albero in grande</a></li><li><a href="it/albero-genealogico-regalo-natale/" hreflang="it" data-idioma="it">Regalare l&#x27;albero a Natale</a></li><li><a href="it/calcolo-grado-di-parentela/" hreflang="it" data-idioma="it">Calcolo del grado di parentela</a></li><li><a href="it/come-fare-albero-genealogico/" hreflang="it" data-idioma="it">Come fare un albero genealogico</a></li><li><a href="it/albero-genealogico-per-bambini/" hreflang="it" data-idioma="it">Albero genealogico per bambini</a></li><li><a href="it/crea-albero-genealogico-online/" hreflang="it" data-idioma="it">Crea il tuo albero genealogico</a></li></ul>
+</div><div class="idioma-col" lang="de">
+  <a class="idioma-nombre" href="de/" hreflang="de" data-idioma="de"><b>Deutsch</b><span>Der einfache Stammbaum für Android und Windows.</span></a>
+  <ul><li><a href="de/stammbaum-drucken/" hreflang="de" data-idioma="de">Stammbaum groß drucken</a></li><li><a href="de/stammbaum-weihnachtsgeschenk/" hreflang="de" data-idioma="de">Stammbaum zu Weihnachten schenken</a></li><li><a href="de/verwandtschaftsgrad-berechnen/" hreflang="de" data-idioma="de">Verwandtschaftsgrad berechnen</a></li><li><a href="de/stammbaum-erstellen/" hreflang="de" data-idioma="de">Stammbaum erstellen</a></li><li><a href="de/stammbaum-fuer-kinder/" hreflang="de" data-idioma="de">Stammbaum für Kinder</a></li><li><a href="de/stammbaum-online-erstellen/" hreflang="de" data-idioma="de">Stammbaum online erstellen</a></li></ul>
+</div><div class="idioma-col" lang="pt-BR">
+  <a class="idioma-nombre" href="pt/" hreflang="pt" data-idioma="pt"><b>Português</b><span>Árvore genealógica fácil para Android e Windows.</span></a>
+  <ul><li><a href="pt/imprimir-arvore-genealogica/" hreflang="pt" data-idioma="pt">Imprimir a árvore em tamanho grande</a></li><li><a href="pt/arvore-genealogica-presente-natal/" hreflang="pt" data-idioma="pt">Presentear a árvore no Natal</a></li><li><a href="pt/calculadora-de-parentesco/" hreflang="pt" data-idioma="pt">Calculadora de parentesco</a></li><li><a href="pt/como-fazer-arvore-genealogica/" hreflang="pt" data-idioma="pt">Como fazer uma árvore genealógica</a></li><li><a href="pt/arvore-genealogica-para-criancas/" hreflang="pt" data-idioma="pt">Árvore genealógica para crianças</a></li><li><a href="pt/criar-arvore-genealogica-online/" hreflang="pt" data-idioma="pt">Crie sua árvore genealógica</a></li></ul>
+</div></div>
+</section>
 </main>
+<footer class="pie">
+  <p class="idiomas-pie"><a href="privacidad-android.html">Privacy policy · Política de privacidad</a> · <a href="borrar-datos.html">Delete your data · Borrar tus datos</a></p>
+</footer>
 <script>document.querySelectorAll("[data-idioma]").forEach(function(a){a.addEventListener("click",function(){try{localStorage.setItem("ramo-idioma",a.dataset.idioma)}catch(e){}})});</script>
 </body>
 </html>

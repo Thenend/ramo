@@ -240,3 +240,16 @@ figcaption { font-size: 15px; color: var(--suave); margin-top: 10px; text-align:
 .creador .hijos { margin-left: 22px; padding-left: 10px; border-left: 2px solid var(--fondo-2); }
 .creador .nota + .persona { margin-top: 2px; }
 .creador #creador-empezar { margin-top: 14px; }
+
+/* raíz (x-default): la app en inglés y los seis idiomas con sus guías */
+.raiz-idiomas { display: grid; grid-template-columns: repeat(3, 1fr); gap: 16px; margin-top: 22px; }
+.idioma-col { background: var(--papel); border: 1px solid var(--linea); border-radius: 14px; padding: 16px 18px; }
+.idioma-nombre { display: block; text-decoration: none; color: var(--tinta); font-size: 20px; }
+.idioma-nombre span { display: block; color: var(--suave); font-size: 15px; }
+.idioma-col ul { margin: 10px 0 0; padding-left: 18px; font-size: 16px; }
+.idioma-col li { margin: 3px 0; }
+.pie .idiomas-pie { text-align: center; }
+/* preguntas al final de cada guía */
+.articulo .preguntas { padding: 32px 0 8px; }
+@media (max-width: 860px) { .raiz-idiomas { grid-template-columns: 1fr 1fr; } }
+@media (max-width: 560px) { .raiz-idiomas { grid-template-columns: 1fr; } }
